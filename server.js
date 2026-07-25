@@ -1,4 +1,5 @@
 const express = require('express')
+const os = require('os')
 
 var app = express()
 app.listen(8080)
@@ -18,7 +19,8 @@ app.use(function(req, res, next) {
 
   req.on('data', function(chunk){ data += chunk})
   req.on('end', function(){
-    const echo = `${cmd}\n ${request}\n ${headers}\n ${data}\n`
+    const hostname = os.hostname();
+    const echo = `Hostname: ${hostname}\n${cmd}\n ${request}\n ${headers}\n ${data}\n`
     console.log(echo)
     res.send(echo)
     next()
