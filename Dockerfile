@@ -10,7 +10,7 @@ COPY package*.json ./
 ENV NODE_ENV=production
 
 # Install dependencies (production only to keep image small)
-RUN npm ci --only=production
+RUN npm ci --only=production --no-audit --no-fund
 
 # Copy application source code
 COPY . .
